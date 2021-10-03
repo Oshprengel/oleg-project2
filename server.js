@@ -1,13 +1,13 @@
-require('dotenv').config()
-
 //___________________
 //Dependencies
 //___________________
 const express = require('express');
+require('dotenv').config();
 const methodOverride = require('method-override');
 const mongoose = require ('mongoose');
 const app = express();
 const db = mongoose.connection;
+const session = require('express-session')
 //___________________
 //Port
 //___________________
@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3000;
 //___________________
 // How to connect to the database either via heroku or locally
 const MONGODB_URI = process.env.MONGODB_URI;
-``
+
 // Connect to Mongo &
 // Fix Depreciation Warnings from Mongoose
 // May or may not need these depending on your Mongoose version
@@ -34,6 +34,14 @@ db.on('disconnected', () => console.log('mongod disconnected'));
 //___________________
 //Middleware
 //___________________
+app.use(
+  session({
+      secret: process.env.SECRET,
+      resave: false,
+      saveUninitialized: false
+  })
+);
+
 
 //use public folder for static assets
 app.use(express.static('public'));
@@ -49,14 +57,16 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //___________________
 // Routes
 //___________________
-//localhost:3000
-app.get('/' , (req, res) => {
-  res.send('ello World!');
-});
 
-app.get('/ello' , (req, res) => {
-  res.send('ello World!');
-});
+
+//for everything involving user login/createuser use the userRouter
+const userRouter = require('./controllers/userRouter');
+app.use('/users',userRouter)
+
+//for everything involving posts including CRUD operations
+const postRouter = require('./controllers/postRouter');
+app.use('/posts', postRouter)
+
 
 //___________________
 //Listener
