@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 const mongoose = require ('mongoose');
 const app = express();
 const db = mongoose.connection;
+
 const session = require('express-session')
 //___________________
 //Port
@@ -58,7 +59,6 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 // Routes
 //___________________
 
-
 //for everything involving user login/createuser use the userRouter
 const userRouter = require('./controllers/userRouter');
 app.use('/users',userRouter)
@@ -66,7 +66,6 @@ app.use('/users',userRouter)
 //for everything involving posts including CRUD operations
 const postRouter = require('./controllers/postRouter');
 app.use('/posts', postRouter)
-
 
 //___________________
 //Listener
