@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <!-- if there as an error then list it here -->
+    <% if (typeof error !== 'undefined'){%>
+        <%=error%>
+    <%}%>
+    <!-- login form -->
+    <form action="/users/login-attempt" method="POST">
+        <!-- username input -->
+        <input type="text" name="name" placeholder="userName" required="required">
+        <!-- password input -->
+        <input type="password" name="password" placeholder="password" required="required">
+        <!-- submit -->
+        <input type="submit">
+    </form>
+        <!-- link to create a new user -->
+        <a href="/users/create"><button>New User</button></a>
+</body>
+</html>

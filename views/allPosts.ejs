@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posts</title>
+</head>
+<body>
+    <h1>All Posts</h1>
+    <%-include('./partials/headerPartial')%>
+    <!-- button that lists just the users posts -->
+    <a href="/posts/my-posts"><button>My Posts</button></a>
+    <!-- form for submitting a new post the currPage param is used to let the server know where to redirect the user two once post is sent -->
+    <form action="/posts?currPage=all-posts" method="POST">
+    <textarea name="body" id="newpost" cols="30" rows="10" placeholder="whats so funny?" required='required'></textarea>
+    <input type="submit" name="" value="post">
+    </form>
+    <!--loops through all the posts in the DB and lists them  -->
+    <% allPosts.forEach((currPost)=>{%>
+        <div class = 'post' style="border: 2px solid black;">
+            <!-- each posts author/body -->
+            <h4><%=currPost.author%></h4>
+            <p><%=currPost.body%></p>
+            <!-- like button -->
+            <!-- if post is already likes by session user present sike button -->
+            <%if (currPost.likesById.includes(currUser._id)){%>
+                <form action="sike/<%=currPost._id%>?_method=put&currPage=all-posts" method="POST">
+                    <input type="submit" value="sike👎">
+                </form>
+            <%}else{%>
+            <!-- if post isnt already liked -->
+                <form action="like/<%=currPost._id%>?_method=put&currPage=all-posts" method="POST">
+                    <input type="submit" value="like👍">
+                </form>
+            <%}%>
+            <!-- number of likes -->
+            <h4><%=currPost.likesById.length%></h4>
+            <!-- delete/edit buttons only availble if the post belongs to the sessions account -->
+            <%if(currPost.author === currUser.name){%>
+                <form action="/posts/<%=currPost._id%>?_method=delete&currPage=all-posts" method="POST">
+                    <input type="submit" value="Delete">               
+                </form>
+                <form action="/posts/<%=currPost._id%>/edit?currPage=all-posts" method="POST">
+                    <input type="submit" value="edit">               
+                </form>
+            <%}%>
+        </div>
+    <%})%>
+</body>
+</html>
