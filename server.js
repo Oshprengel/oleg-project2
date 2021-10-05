@@ -44,6 +44,7 @@ app.use(
 );
 
 
+
 //use public folder for static assets
 app.use(express.static('public'));
 
@@ -66,6 +67,11 @@ app.use('/users',userRouter)
 //for everything involving posts including CRUD operations
 const postRouter = require('./controllers/postRouter');
 app.use('/posts', postRouter)
+
+//if somebody attempts to go to the root route the redirect them to the login
+app.get('/',(req,res)=>{
+  res.redirect('/users/login')
+})
 
 //___________________
 //Listener
