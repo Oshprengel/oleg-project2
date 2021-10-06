@@ -4,18 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/allPostsStyle.css">
     <title>My Posts</title>
 </head>
 <body>
-    <h1>All Posts</h1>
     <%-include('./partials/headerPartial')%>
-    <!-- redirects the user to the page with all posts -->
+    <div id ="contentbox">
+        <%-include('./partials/newPost')%>
+        <!-- redirects the user to the page with all posts -->
     <a href="/posts/all-posts"><button>All Posts</button></a>
-    <!-- form for submitting a new post the currPage param is used to let the server know where to redirect the user two once post is sent -->
-    <form action="/posts?currPage=all-posts" method="POST">
-    <textarea name="body" id="newpost" cols="30" rows="10" placeholder="whats so funny?" required='required'></textarea>
-    <input type="submit" name="" value="post">
-    </form>
     <!--loops through all the posts in the DB and lists them  -->
     <% allPosts.forEach((currPost)=>{%>
         <div class = 'post' style="border: 2px solid black;">
@@ -45,5 +42,6 @@
                 </form>
         </div>
     <%})%>
+</div>
 </body>
 </html>

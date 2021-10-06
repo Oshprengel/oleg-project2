@@ -1,0 +1,8 @@
+            <!-- form for submitting a new post the currPage param is used to let the server know where to redirect the user two once post is sent -->
+            <form action="/posts?currPage=all-posts" method="POST">
+                <h4 id="newPostTitle">New Post</h4>
+                <hr>
+                <textarea name="body" id="newpost" cols="30" rows="10" placeholder="whats so funny?"
+                    required='required'></textarea>
+                <input id = "submitPost"type="submit" name="" value="Post">
+            </form>
