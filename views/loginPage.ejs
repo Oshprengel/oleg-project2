@@ -4,23 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/loginStyle.css">
     <title>Login</title>
 </head>
 <body>
-    <!-- if there as an error then list it here -->
-    <% if (typeof error !== 'undefined'){%>
-        <%=error%>
-    <%}%>
-    <!-- login form -->
-    <form action="/users/login-attempt" method="POST">
-        <!-- username input -->
-        <input type="text" name="name" placeholder="userName" required="required">
-        <!-- password input -->
-        <input type="password" name="password" placeholder="password" required="required">
-        <!-- submit -->
-        <input type="submit">
-    </form>
-        <!-- link to create a new user -->
-        <a href="/users/create"><button>New User</button></a>
+    <div id="background">
+    <div id="login">
+        <!-- login form -->
+        <h1>Jokester 🤣</h1>
+        <form action="/users/login-attempt" method="POST">
+            <!-- if there as an error then list it here -->
+            <% if (typeof error !== 'undefined'){%>
+                <h2><%=error%></h2>
+            <%}%>
+            <!-- username input -->
+            <input type="text" name="name" placeholder="userName" required="required">
+            <!-- password input -->
+            <input type="password" name="password" placeholder="password" required="required">
+            <!-- submit -->
+            <input type="submit">
+            <a href="/users/create"><button type="button">New User</button></a>
+        </form>
+            <!-- link to create a new user -->
+    </div>
+    </div>
 </body>
 </html>

@@ -1,0 +1,31 @@
+/* turns headmenu to grid and divides button space */
+#headerMenu{
+    display: grid;
+    grid-template-columns:1fr 2fr 2fr 1fr;
+    background-color: white;
+    margin-bottom: 20px;
+    border-bottom: black solid 10px;
+}
+#headerMenu *{
+    width: 100%;
+    height: 100%;
+    font-size: 50px;
+    background-color: white;
+}
+#headerMenu button{
+    color: black;
+    border: none;
+    transition: ease-in .25s;
+}
+#headerMenu button:hover{
+    box-shadow: inset 10px 10px 10px 0px black;
+}
+h1{
+    margin: 0;
+}
+.dropdown{
+    position: relative;
+}
+.dropdown-menu{
+    position: absolute;
+}

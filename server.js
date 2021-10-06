@@ -43,6 +43,8 @@ app.use(
   })
 );
 
+app.use(express.static(__dirname + '/public'));
+
 
 
 //use public folder for static assets
