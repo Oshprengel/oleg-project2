@@ -1,6 +1,6 @@
 body{
     background:linear-gradient(lightseagreen, black);
-    height: 100vh;
+    min-height: 100vh;
     margin: 0px;
 }
 #contentbox{
@@ -35,6 +35,7 @@ body{
 #thePosts{
     border-top: black solid 5px;
     margin-top: 10px;
+    margin-bottom: 200px;
 }
 textarea{
     border-radius: 10px;

@@ -22,6 +22,10 @@ postRouter.get('/all-posts',(req,res)=>{
     })
 })
 
+postRouter.get('/stats',(req,res)=>{
+
+})
+
 //only users posts page
 postRouter.get('/my-posts',(req,res)=>{
     //finds all the posts by the current session user
