@@ -1,4 +1,5 @@
 $("#changeUserButton").on("click",()=>{
+    $("#error").css("display", "none")
     if($("#changeUserName").css("display") === "block"){
         $("#changeUserName").css("display", "none")
     }else{
@@ -7,6 +8,7 @@ $("#changeUserButton").on("click",()=>{
     }  
 })
 $("#changePassButton").on("click",()=>{
+    $("#error").css("display, none")
     if($("#changePassword").css("display") === "block"){
         $("#changePassword").css("display", "none")
     }else{

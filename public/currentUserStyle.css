@@ -21,3 +21,7 @@ form[id="changeUserName"], form[id="changePassword"]{
 input[value="Log Out"]:hover{
     background-color: red;
 }
+#error{
+    font-size: 20px;
+    color: darkred;
+}

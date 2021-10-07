@@ -25,14 +25,17 @@
     <!-- changeusername -->
     <button id = "changeUserButton">Change Username</button>
     <button id = "changePassButton">Change Password</button>
-    <form action="/users/edit-name" method="POST" id="changeUserName">
-        New Username<input type="text">
+    <form action="/users/edit-name" method="POST" id="changeUserName" <%if (typeof error !== "undefined"){%>style="display: block;"<%}%>>
+        <%if (typeof error !== "undefined"){%>
+            <h4 id="error"><%=error%></h4>
+        <%}%>
+        New Username<input type="text" name="newName" required="required">
         <input type="submit">
     </form>
     
     <!-- changepassword -->
     <form action="/users/edit-password" method="POST" id="changePassword">
-        New Password<input type="password">
+        New Password<input type="password" required="required" name="password">
         <input type="submit">
     </form>
     </div>

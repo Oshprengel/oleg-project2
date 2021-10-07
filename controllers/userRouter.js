@@ -84,3 +84,30 @@ userRouter.post('/', (req,res)=>{
 })
 //export userouter
 module.exports=userRouter
+
+//---------------------
+//edit username/password
+//---------------------
+userRouter.post('/edit-name',(req,res)=>{
+    //first confirms that username is not already taken
+    User.find({name:req.body.newName},(error,foundUser)=>{
+        //if user name is taken render the current user page with an error
+        if(foundUser.length){
+            res.render("currentUser.ejs",{error:"Username is already taken!\n Try another",user:req.session.currUser})
+        }//if it isnt already taken
+        else{
+            User.findByIdAndUpdate(req.session.currUser._id, {name:req.body.newName},(error, foundUser)=>{
+                req.session.currUser.name = req.body.newName
+                res.redirect("/posts/current-user")
+    
+            })
+        }
+    })
+})
+
+userRouter.post('/edit-password',(req,res)=>{
+    req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
+    User.findByIdAndUpdate(req.session.currUser._id,{password:req.body.password},()=>{
+        res.redirect("/posts/current-user")
+    })
+})
