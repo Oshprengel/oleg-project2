@@ -1,0 +1,23 @@
+*{
+    text-align: center;
+}
+h1{
+    font-size: 75px;
+}
+input, #changeUserButton, #changePassButton{
+    font-size: 50px;
+    border:none;
+    border-radius: 20px;
+    background-color: white;
+    transition: .5s;
+    margin:10px;
+}
+form[id="changeUserName"], form[id="changePassword"]{
+    display: none;
+}
+#changeUserButton:hover,  #changePassButton:hover, input[type="submit"]:hover{
+    background-color: green;
+}
+input[value="Log Out"]:hover{
+    background-color: red;
+}

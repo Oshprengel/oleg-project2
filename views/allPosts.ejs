@@ -13,10 +13,12 @@
     <%-include('./partials/headerPartial')%>
         <div id="contentbox">
             <%-include('./partials/newPost')%>
-            <a href="/posts/my-posts"><button>My Posts</button></a>
-            <!--loops through all the posts in the DB and lists them  -->
-            <% allPosts.forEach((currPost)=>{%>
-                <div class='post' style="border: 2px solid black;">
+            <div id="thePosts">
+                <h2>All Posts</h2>
+                <a href="/posts/my-posts"><button id="otherPosts">My Posts</button></a>
+                <!-- loops through all posts -->
+                <% allPosts.forEach((currPost)=>{%>
+                <div class='post' >
                     <!-- each posts author/body -->
                     <h4>
                         <%=currPost.author%>
@@ -28,18 +30,20 @@
                     <!-- if post is already likes by session user present sike button -->
                     <%if (currPost.likesById.includes(currUser._id)){%>
                         <form action="sike/<%=currPost._id%>?_method=put&currPage=all-posts" method="POST">
-                            <input type="submit" value="sike👎">
+                            <button type="submit" class="likeButton"><span class="thumb">👎</span></button>
+                            <h4 class="likes">
+                                Total Likes: <%=currPost.likesById.length%>
+                            </h4>
                         </form>
                         <%}else{%>
                             <!-- if post isnt already liked -->
                             <form action="like/<%=currPost._id%>?_method=put&currPage=all-posts" method="POST">
-                                <input type="submit" value="like👍">
+                                <button type="submit" value="like" class="likeButton"><span class="thumb">👍</span></button>
+                                <h4 class="likes">
+                                    Total Likes: <%=currPost.likesById.length%>
+                                </h4>
                             </form>
                             <%}%>
-                                <!-- number of likes -->
-                                <h4>
-                                    <%=currPost.likesById.length%>
-                                </h4>
                                 <!-- delete/edit buttons only availble if the post belongs to the sessions account -->
                                 <%if(currPost.author===currUser.name){%>
                                     <form action="/posts/<%=currPost._id%>?_method=delete&currPage=all-posts"
@@ -47,12 +51,13 @@
                                         <input type="submit" value="Delete">
                                     </form>
                                     <form action="/posts/<%=currPost._id%>/edit?currPage=all-posts" method="POST">
-                                        <input type="submit" value="edit">
+                                        <input type="submit" value="Edit">
                                     </form>
                                     <%}%>
                 </div>
                 <%})%>
-        </div>
+            </div>
+    </div>
 </body>
 
 </html>

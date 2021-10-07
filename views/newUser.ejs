@@ -9,12 +9,11 @@
 </head>
 <body>
     <!-- If there is an error currently in the session then post it here -->
-
+    <h1>New User 👋</h1>
     <!-- new user form -->
     <div id='background'>
     <div id='login'>
     <form action="/users" method="POST">
-        <h1>New User 👋</h1>
         <% if(typeof error !== 'undefined'){%>
             <h2><%=error%></h2>
         <%}%>

@@ -4,14 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/allPostsStyle.css">
+    <link rel="stylesheet" href="/currentUserStyle.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <script defer src="/currentUserScript.js"></script>
+    <title>My Account</title>
 </head>
 <body>
-    <h1>My Account</h1>
     <%-include('./partials/headerPartial')%>
-    Your username is: <%=user.name%>
+    <div id ='content'>
+        <h1>Your username is: <%=user.name%></h1>
+    <!-- logout button -->
     <form action="/users/log-out?" method="POST">
-    <input type="submit" value="Log Out">
+        <input type="submit" value="Log Out">
     </form>
+    
+    <!-- changeusername -->
+    <button id = "changeUserButton">Change Username</button>
+    <button id = "changePassButton">Change Password</button>
+    <form action="/users/edit-name" method="POST" id="changeUserName">
+        New Username<input type="text">
+        <input type="submit">
+    </form>
+    
+    <!-- changepassword -->
+    <form action="/users/edit-password" method="POST" id="changePassword">
+        New Password<input type="password">
+        <input type="submit">
+    </form>
+    </div>
 </body>
-</html>
+</html>`
