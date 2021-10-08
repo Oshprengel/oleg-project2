@@ -1,4 +1,4 @@
-Jokester😂. 
+Jokester😂 
 A blog app which allows you to post jokes on a public board
 ![image](https://user-images.githubusercontent.com/24393800/136482361-73dfed2c-7876-4616-a0ed-b427ad140926.png)
 ![image](https://user-images.githubusercontent.com/24393800/136482398-1ebb63cc-3e10-4e1f-b1d9-f3ea88403da4.png)
