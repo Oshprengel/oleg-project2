@@ -10,5 +10,14 @@
 </head>
 <body>
     <%-include('./partials/headerPartial.ejs')%>
+    <h1>Top Joke👑</h1>
+    <span class= "joke"><%=topPosts[0].title%></span>
+    <span class= "info">By: <%=topPosts[0].author%><br> Total likes: <%=topPosts[0].total%></span>
+    <h1>Second Place⭐</h1>
+    <span class= "joke"><%=topPosts[1].title%></span>
+    <span class= "info">By: <%=topPosts[1].author%><br> Total likes: <%=topPosts[1].total%></span>
+    <h1>Third🥉</h1>
+    <span class= "joke"><%=topPosts[2].title%></span>
+    <span class= "info">By: <%=topPosts[2].author%><br> Total likes: <%=topPosts[2].total%></span>
 </body>
 </html>

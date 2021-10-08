@@ -25,6 +25,7 @@ postRouter.get('/all-posts',(req,res)=>{
 
 postRouter.get('/stats',(req,res)=>{
     findTopThree('_',()=>{
+        console.log(topThree)
         res.render('stats.ejs',{topPosts:topThree})
     })
 })
@@ -129,10 +130,10 @@ function removeLike(postID, userID, callBack){
     })
 }
 
-var topThree = [{title:null,total:0},{title:null,total:0},{title:null,total:0}]
+var topThree = [{title:null,total:0,author:null},{title:null,total:0,author:null},{title:null,total:0,author:null}]
 function findTopThree(type = "posts",callBack){
     //returns an array of the top three users or posts which contains three objects containing the user/post and number of likes
-    
+    topThree = [{title:null,total:0,author:null},{title:null,total:0,author:null},{title:null,total:0,author:null}]
     //first get an array of all the current posts
     Post.find({},(error,foundPosts)=>{
         
@@ -144,7 +145,7 @@ function findTopThree(type = "posts",callBack){
             var indx = 0
             for(currEle of topThree){
                 if (currEle.total<=totalLikes){
-                    let newEle ={title: currPost.body, total:totalLikes}
+                    let newEle ={title: currPost.body, total:totalLikes,author:currPost.author}
                     topThree.splice(indx,0,newEle)
                     topThree.pop()
                     break
