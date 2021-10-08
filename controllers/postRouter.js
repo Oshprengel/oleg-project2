@@ -3,6 +3,7 @@
 //dependecies
 const express = require('express');
 const Post = require('../models/postModel');
+const User = require('../models/userModel')
 const { post } = require('./userRouter');
 const postRouter = express.Router();
 
@@ -23,7 +24,9 @@ postRouter.get('/all-posts',(req,res)=>{
 })
 
 postRouter.get('/stats',(req,res)=>{
-
+    findTopThree('_',()=>{
+        res.render('stats.ejs',{topPosts:topThree})
+    })
 })
 
 //only users posts page
@@ -124,6 +127,34 @@ function removeLike(postID, userID, callBack){
             callBack()
         })
     })
+}
+
+var topThree = [{title:null,total:0},{title:null,total:0},{title:null,total:0}]
+function findTopThree(type = "posts",callBack){
+    //returns an array of the top three users or posts which contains three objects containing the user/post and number of likes
+    
+    //first get an array of all the current posts
+    Post.find({},(error,foundPosts)=>{
+        
+        //loops through the arrays
+        foundPosts.forEach((currPost)=>{
+            //total likes for each post 
+            let totalLikes = currPost.likesById.length
+            //now loop through the topthree array 
+            var indx = 0
+            for(currEle of topThree){
+                if (currEle.total<=totalLikes){
+                    let newEle ={title: currPost.body, total:totalLikes}
+                    topThree.splice(indx,0,newEle)
+                    topThree.pop()
+                    break
+                }
+                indx+=1
+            }
+        })
+        callBack()
+    })
+
 }
 
 module.exports=postRouter
