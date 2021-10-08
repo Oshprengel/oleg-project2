@@ -21,3 +21,4 @@ IceBox
   - add the option to hide a punchline
   - make posts editable within the all posts page
   - make the stats page list the top three users by likes
+  - make posts track user ID, if a user changes their name they're posts dont change
