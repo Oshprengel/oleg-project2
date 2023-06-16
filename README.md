@@ -11,9 +11,6 @@ Technologies used\
   -Mongoose\
   -MongoDB\
   Getting Started\
-Live Link\
- https://oleg-project2.herokuapp.com/users/login \
- Create a new account and start posting! Please keep it PG 
 
 IceBox 
   - If user already has a session going redirect to the all posts page instead of the log in page
